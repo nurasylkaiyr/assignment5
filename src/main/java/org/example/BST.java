@@ -2,7 +2,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-public class BST<K extends Comparable<K>, V> {
+public class BST<K extends Comparable<K>, V> implements Iterable<BST.NodeData<K, V>> {
     private Node root;
     private int size;
     private class Node{
@@ -94,19 +94,22 @@ public class BST<K extends Comparable<K>, V> {
     public int size() {
         return size;
     }
-    public Iterable<K> iterator(){
-        List<K> keys = new ArrayList<>();
-        inOrderTraversal(root, keys);
-        return keys;
+    @Override
+    public Iterator<NodeData<K, V>> iterator() {
+        List<NodeData<K, V>> nodes = new ArrayList<>();
+        inOrderTraversal(root, nodes);
+        return nodes.iterator();
     }
-    private void inOrderTraversal(Node node, List<K> keys) {
+
+    private void inOrderTraversal(Node node, List<NodeData<K, V>> nodes) {
         if (node == null)
             return;
 
-        inOrderTraversal(node.left, keys);
-        keys.add(node.key);
-        inOrderTraversal(node.right, keys);
+        inOrderTraversal(node.left, nodes);
+        nodes.add(new NodeData<>(node.key, node.value));
+        inOrderTraversal(node.right, nodes);
     }
+
     public static class NodeData<K, V> {
         private K key;
         private V value;
