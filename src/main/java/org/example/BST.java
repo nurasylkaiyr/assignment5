@@ -88,6 +88,10 @@ public class BST<K extends Comparable<K>, V> {
             node.left = deleteMin(node.left);
             return node;
         }
+
+        public int size() {
+            return size;
+        }
         public Iterable<K> iterator(){
 
         }
