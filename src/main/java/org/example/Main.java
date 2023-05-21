@@ -13,5 +13,11 @@ public class Main {
 
         for (BST.NodeData<Integer, String> node : tree)
             System.out.println("Key is " + node.getKey() + " and value is " + node.getValue());
+
+        System.out.println(tree.get(3));
+        System.out.println(tree.get(2));
+
+        tree.delete(4);
+        System.out.println(tree.get(4));
     }
 }
