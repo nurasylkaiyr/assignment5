@@ -127,4 +127,21 @@ public class BST<K extends Comparable<K>, V> implements Iterable<BST.NodeData<K,
             return value;
         }
     }
+    public boolean consist(K key) {
+        boolean check = consist(root, key);
+        return check;
+    }
+    private boolean consist (Node curr, K key) {
+        if(curr == null){
+            return false;
+        }
+        else if(key.equals(curr.key)){
+            return true;
+        }
+        int c = key.compareTo(curr.key);
+        if(c<0){
+            return consist(curr.left, key);
+        }
+        else {return consist(curr.right, key);}
+    }
 }
